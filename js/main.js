@@ -1,7 +1,6 @@
 $(function () {
     var acCount = {};
     var url = location.href;
-    var isBeta = url.search("beta") >= 0;
 
     function onSuccess(data, dataType) {
         data.StandingsData.forEach(function (userData) {
@@ -32,8 +31,8 @@ $(function () {
     }
 
     function getContestName() {
-        return isBeta ? url.split("/")[4] : url.split("/")[2].split(".")[0];
+        return url.split("/")[4];
     }
 
-    $.ajax({ url: "https://beta.atcoder.jp/contests/" + getContestName() + "/standings/json", dataType: "json", type: "get", success: onSuccess });
+    $.ajax({ url: "https://atcoder.jp/contests/" + getContestName() + "/standings/json", dataType: "json", type: "get", success: onSuccess });
 });
